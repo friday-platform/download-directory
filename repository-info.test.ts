@@ -1,7 +1,7 @@
 import {test, expect} from 'vitest';
 import getRepositoryInfo from './repository-info.js';
 
-test('getRepositoryInfo', async () => {
+test('getRepositoryInfo', {timeout: 30_000}, async () => {
 	await expect(getRepositoryInfo('https://github.com/user')).resolves.toMatchInlineSnapshot(`
 		{
 		  "error": "NOT_A_REPOSITORY",

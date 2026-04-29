@@ -2,7 +2,9 @@ export default async function authenticatedFetch(
 	url: string,
 	{signal, method}: {signal?: AbortSignal; method?: 'HEAD'} = {},
 ): Promise<Response> {
-	const token = globalThis.localStorage?.getItem('token');
+	const token = globalThis.localStorage?.getItem('token')
+		// eslint-disable-next-line n/prefer-global/process
+		?? globalThis.process?.env?.['GITHUB_TOKEN'];
 
 	const response = await fetch(url, {
 		method,
